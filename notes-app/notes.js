@@ -8,9 +8,9 @@ const getNotes =  () => {
 const addNote =  (title, body) => {
     const notes = loadNotes()
     
-    const duplicateNote = notes.filter( (note) => note.title === title )
+    const duplicateNote = notes.find( (note) => note.title === title )
 
-    if (duplicateNote.length != 0) {
+    if (duplicateNote) {
         console.log(chalk.red.inverse("Title already taken"))
         return
     }
