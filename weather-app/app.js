@@ -9,17 +9,17 @@ if (!process.argv[2]) {
     return
 }
 
-geocode(process.argv[2], (error, geoCodeData) => {
+geocode(process.argv[2], (error, { latitude, longitude, location }) => {
     if (error) {
         return console.log('error', error)
     }
     
-    forecast(geoCodeData.latitude, geoCodeData.longitude, (error, forecastData) => {
+    forecast(latitude, longitude, (error, {summary}) => {
         if (error) {
             return console.log('Error', error)
         }
-        console.log(chalk.bold('Location:') + geoCodeData.location)
-        console.log(chalk.bold('Latitude:') + geoCodeData.latitude + chalk.bold(' Longitude:'), geoCodeData.longitude)
-        console.log(chalk.bold('Forecast Summary: ') + forecastData.summary)
+        console.log(chalk.bold('Location:') + location)
+        console.log(chalk.bold('Latitude:') + latitude + chalk.bold(' Longitude:'), longitude)
+        console.log(chalk.bold('Forecast Summary: ') + summary)
     })
 })
