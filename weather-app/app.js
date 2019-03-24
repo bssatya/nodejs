@@ -2,7 +2,14 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 const chalk = require('chalk')
 
-geocode('hubli', (error, geoCodeData) => {
+if (!process.argv[2]) {
+    console.log('Pass the location name as arument to program')
+    console.log('node app.js <location name>')
+    console.log('Ex: node app.js bangalore')
+    return
+}
+
+geocode(process.argv[2], (error, geoCodeData) => {
     if (error) {
         return console.log('error', error)
     }
